@@ -29,7 +29,14 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(libs.mvvm.core)
+
+            // Optional: Moko MVVM LiveData bindings for the shared module
+            implementation(libs.mvvm.livedata)
+
+            // Optional: Moko MVVM state support for handling UI states
+            implementation(libs.mvvm.state)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

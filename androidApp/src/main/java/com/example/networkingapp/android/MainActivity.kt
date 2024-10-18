@@ -9,20 +9,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.networkingapp.Greeting
+import com.example.networkingapp.android.databinding.ActivityMainBinding
+import com.example.networkingapp.viewmodel.MainActivityViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    GreetingView(Greeting().greet())
-                }
-            }
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
     }
 }
 
