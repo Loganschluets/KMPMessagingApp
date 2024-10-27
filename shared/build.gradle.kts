@@ -29,6 +29,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.ktor.client.content.negotiation.v232)
+            implementation(libs.ktor.serialization.kotlinx.json.v232)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.cio)
+            implementation(libs.ktor.serialization)
+            implementation(libs.ktor.client.resources)
+            implementation(libs.ktor.client.serialization)
+
             implementation(libs.mvvm.core)
 
             // Optional: Moko MVVM LiveData bindings for the shared module
@@ -40,6 +49,9 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
         }
     }
 }
