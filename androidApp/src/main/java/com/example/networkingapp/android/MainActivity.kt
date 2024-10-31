@@ -44,7 +44,11 @@ class MainActivity : ComponentActivity() {
         })
     }
 
-    fun networkRequest(){
+    fun sendMesssage(){
+
+    }
+
+    fun refreshMessages(){
 
     }
 

@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 kotlin {
@@ -37,6 +39,10 @@ kotlin {
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.client.resources)
             implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.json)
+
+            implementation(libs.ktor.client.logging)
+
 
             implementation(libs.mvvm.core)
 
@@ -52,6 +58,9 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
