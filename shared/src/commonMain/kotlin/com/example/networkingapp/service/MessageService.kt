@@ -5,20 +5,30 @@ import com.example.networkingapp.model.responseMessageDto
 import com.example.networkingapp.networking.createHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
-import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.statement.HttpResponse
 import io.ktor.utils.io.InternalAPI
 import kotlinx.serialization.json.Json
 import io.ktor.http.HttpHeaders
 import io.ktor.http.ContentType
+import io.ktor.client.call.body
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.http.HttpMethod
+import io.ktor.client.request.header
+import io.ktor.client.request.request
 
-class MessageService {
+
+class MessageService{
 
     private val client: HttpClient = createHttpClient()
 
-    fun installBasicHeaders(){
+    private fun HttpRequestBuilder.installBasicHeaders(){
+        header("Accept", "application/json")
+        header("User-Agent", "Networking App ")
+
     }
+
+
 
     suspend fun getMessages(url: String): responseMessageDto {
         val response: HttpResponse = client.get("")
@@ -29,15 +39,8 @@ class MessageService {
     @OptIn(InternalAPI::class)
     suspend fun sendMessage(url: String, message: responseMessageDto) {
         client.post(url) {
-            headers {
-                append(HttpHeaders.ContentType, ContentType.Application.Json.toString()) // Content-Type
-                append(HttpHeaders.Accept, ContentType.Application.Json.toString()) // Accept
-                append(HttpHeaders.Authorization, "Bearer your_token_here") // Authorization (if needed)
-                append(HttpHeaders.UserAgent, "YourAppName/1.0") // User-Agent
-                // Add any custom headers as needed
-                append("X-Custom-Header", "CustomHeaderValue")
-            }
 
+            installBasicHeaders()
 
             body = message
         }

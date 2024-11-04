@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-    var context = applicationContext
+    //var context = applicationContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +34,9 @@ class MainActivity : ComponentActivity() {
             override fun onClick(view: View?) {
 
                 //make request
-                viewModel.sendHttpRequest()
+                //viewModel.sendHttpRequest()
 
-                Toast.makeText(context, "Request sent", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
                     .show()
 
             }
