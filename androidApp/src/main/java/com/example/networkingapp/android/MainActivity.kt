@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContentView(binding.root)
 
 
-
+        //test commit
         configureLayout()
 
 
