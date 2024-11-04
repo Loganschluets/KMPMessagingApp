@@ -33,8 +33,6 @@ class MainActivity : ComponentActivity() {
         binding.sendBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
 
-                //make request
-                //viewModel.sendHttpRequest()
 
                 Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
                     .show()
@@ -51,9 +49,6 @@ class MainActivity : ComponentActivity() {
     fun refreshMessages(){
 
     }
-
-
-
 }
 
 
