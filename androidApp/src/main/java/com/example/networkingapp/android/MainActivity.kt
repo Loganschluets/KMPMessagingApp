@@ -2,24 +2,33 @@ package com.example.networkingapp.android
 
 import android.os.Bundle
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.compose.material3.*
+import androidx.activity.viewModels
 import com.example.networkingapp.android.databinding.ActivityMainBinding
 import com.example.networkingapp.viewmodel.MainActivityViewModel
-import androidx.lifecycle.viewmodel.*
+import dev.icerock.moko.mvvm.getViewModel
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.networkingapp.android.adapter.InboxAdapter
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-    //var context = applicationContext
+
+    private lateinit var adapter: InboxAdapter
+
+    private val username = "3"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = getViewModel { MainActivityViewModel() }
+
 
 
         //test commit
@@ -28,26 +37,41 @@ class MainActivity : ComponentActivity() {
 
     }
 
+    fun createListAdapter(){
+        /*
+        adapter = InboxAdapter(this, viewModel.messageList.value.toMutableList())
+        binding.inboxList.adapter = adapter
+        binding.inboxList.layoutManager = LinearLayoutManager(this)*/
+    }
+
 
     fun configureLayout(){
         binding.sendBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
 
+                if(!binding.message.text.isNullOrEmpty() && !binding.recipient.text.isNullOrEmpty()) {
+                    viewModel.sendMessage(username, binding.recipient.text.toString(),
+                        binding.message.text.toString())
+                }
 
+                Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
+                    .show()
+
+            }
+        })
+
+        binding.getBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+
+                viewModel.fetchMessages(username)
+
+                //println(viewModel.messageList)
                 Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
                     .show()
 
             }
 
         })
-    }
-
-    fun sendMesssage(){
-
-    }
-
-    fun refreshMessages(){
-
     }
 }
 

@@ -5,15 +5,21 @@ ktor = "3.0.0"
 compose = "1.5.4"
 compose-material3 = "1.1.2"
 androidx-activityCompose = "1.8.0"
-ktorClientContentNegotiation = "2.3.2"
 ktorClientLogging = "2.3.3"
 ktorClientOkhttp = "2.3.12"
-ktorSerializationKotlinxJson = "2.3.2"
 lifecycleViewmodelKtx = "2.8.6"
+lifecycleViewmodelKtxVersion = "2.6.0"
+mvvm = "0.19.0"
+mvvmCore = "0.13.1"
+mvvmCoreVersion = "0.13.0"
+mvvmLivedata = "0.13.0"
 mvvmState = "0.16.1"
+recyclerview = "1.3.2"
+appcompat = "1.7.0"
 
 [libraries]
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-lifecycle-viewmodel-ktx-v260 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -21,22 +27,27 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
-ktor-client-content-negotiation-v232 = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientContentNegotiation" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
+ktor-client-plugins = { module = "io.ktor:ktor-client-plugins", version.ref = "ktor"}
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientLogging" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttp" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-plugins-http-timeout = { module = "io.ktor:ktor-client-plugins-http-timeout", version.ref = "ktor" }
 ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor" }
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-serialization-kotlinx-json-v232 = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorSerializationKotlinxJson" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+mvvm = { module = "dev.icerock.moko:mvvm", version.ref = "mvvm" }
 mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmState" }
-mvvm-livedata = { module = "dev.icerock.moko:mvvm-livedata", version.ref = "mvvmState" }
+mvvm-core-v0130 = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCoreVersion" }
+mvvm-livedata-v0130 = { module = "dev.icerock.moko:mvvm-livedata", version.ref = "mvvmLivedata" }
 mvvm-state = { module = "dev.icerock.moko:mvvm-state", version.ref = "mvvmState" }
 
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

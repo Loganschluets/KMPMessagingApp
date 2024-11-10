@@ -3,7 +3,7 @@ package com.example.networkingapp.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-class requestMessageDto(
+data class ReceivedMessageDto(
     var message: String? = null,
-    var recipient: String? = null
+    var sender: String? = null
 )
