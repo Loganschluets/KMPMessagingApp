@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.Packaging
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -31,8 +32,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.ktor.client.content.negotiation.v232)
-            implementation(libs.ktor.serialization.kotlinx.json.v232)
+            implementation(libs.ktor.client.content.negotiation)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.cio)
@@ -40,14 +40,14 @@ kotlin {
             implementation(libs.ktor.client.resources)
             implementation(libs.ktor.client.serialization)
             implementation(libs.ktor.client.json)
-
+            //implementation(libs.ktor.client.plugins)
             implementation(libs.ktor.client.logging)
 
-
-            implementation(libs.mvvm.core)
+            api(libs.mvvm.core.v0130)
+            api(libs.mvvm.livedata.v0130)
 
             // Optional: Moko MVVM LiveData bindings for the shared module
-            implementation(libs.mvvm.livedata)
+            //implementation(libs.mvvm.livedata)
 
             // Optional: Moko MVVM state support for handling UI states
             implementation(libs.mvvm.state)
@@ -58,10 +58,12 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+
     }
 }
 
