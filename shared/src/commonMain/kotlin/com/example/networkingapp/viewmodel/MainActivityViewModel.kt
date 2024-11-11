@@ -16,6 +16,10 @@ class MainActivityViewModel() : ViewModel() {
     )
     val messageList: LiveData<MutableList<MessageDto>> = mMessageList
 
+    private val mIsRequesting: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+
+    val isRequesting: LiveData<Boolean> = mIsRequesting
+
     fun sendMessage(sender: String, receiver: String, messageText: String){
         viewModelScope.launch{
             kotlin.runCatching {
@@ -31,7 +35,10 @@ class MainActivityViewModel() : ViewModel() {
     }
 
     fun fetchMessages(user: String){
+
+
         viewModelScope.launch{
+            mIsRequesting.value = true
             kotlin.runCatching {
                 val response: Array<MessageDto> = MessageService.getMessagesForUser(user)
                 mMessageList.value = response.toMutableList()
@@ -41,8 +48,12 @@ class MainActivityViewModel() : ViewModel() {
                 println("fetchMessages failed with error: ${it.message}\"")
 
             }.onSuccess {
-                println("fetchMessages succeeded") // Success log
+                println("fetchMessages succeeded:") // Success log
+                for(message in mMessageList.value){
+                    println(message)
+                }
             }
+            mIsRequesting.value = false
         }
     }
 }

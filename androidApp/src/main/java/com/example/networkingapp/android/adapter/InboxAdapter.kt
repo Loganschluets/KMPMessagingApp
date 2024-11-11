@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.networkingapp.android.databinding.InboxItemBinding
-import com.example.networkingapp.model.ReceivedMessageDto
+import com.example.networkingapp.model.MessageDto
 
-class InboxAdapter(private val context: Context, private val foodItemList:MutableList<ReceivedMessageDto>)
+class InboxAdapter(private val context: Context, private val foodItemList:MutableList<MessageDto>)
     : RecyclerView.Adapter<InboxAdapter.InboxItemViewHolder>() {
 
 
@@ -35,7 +35,7 @@ class InboxAdapter(private val context: Context, private val foodItemList:Mutabl
 
         private val binding = inboxItemLayoutBinding
 
-        fun bind(messageObject: ReceivedMessageDto){
+        fun bind(messageObject: MessageDto){
             binding.message.text = messageObject.message
             binding.sender.text = messageObject.sender
         }

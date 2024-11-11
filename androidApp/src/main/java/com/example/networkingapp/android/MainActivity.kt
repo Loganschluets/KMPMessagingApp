@@ -8,6 +8,7 @@ import com.example.networkingapp.android.databinding.ActivityMainBinding
 import com.example.networkingapp.viewmodel.MainActivityViewModel
 import dev.icerock.moko.mvvm.getViewModel
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.networkingapp.android.adapter.InboxAdapter
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: InboxAdapter
 
-    private val username = "3"
+    private val username = "4"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +34,24 @@ class MainActivity : AppCompatActivity() {
 
         //test commit
         configureLayout()
-
+        viewModel.isRequesting.ld().observe(this, Observer {
+            if(it){
+                binding.inboxList.visibility = View.GONE
+                binding.progressBarCyclic.visibility = View.VISIBLE
+            }else{
+                createListAdapter()
+                binding.progressBarCyclic.visibility = View.GONE
+                binding.inboxList.visibility = View.VISIBLE
+            }
+        })
 
     }
 
     fun createListAdapter(){
-        /*
+
         adapter = InboxAdapter(this, viewModel.messageList.value.toMutableList())
         binding.inboxList.adapter = adapter
-        binding.inboxList.layoutManager = LinearLayoutManager(this)*/
+        binding.inboxList.layoutManager = LinearLayoutManager(this)
     }
 
 
