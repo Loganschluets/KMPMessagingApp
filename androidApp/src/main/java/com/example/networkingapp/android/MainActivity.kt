@@ -63,10 +63,6 @@ class MainActivity : AppCompatActivity() {
                     viewModel.sendMessage(username, binding.recipient.text.toString(),
                         binding.message.text.toString())
                 }
-
-                Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
-                    .show()
-
             }
         })
 
@@ -74,13 +70,14 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(view: View?) {
 
                 viewModel.fetchMessages(username)
-
-                //println(viewModel.messageList)
-                Toast.makeText(applicationContext, "Request sent", Toast.LENGTH_LONG)
-                    .show()
-
             }
+        })
 
+        binding.clearBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+
+                viewModel.deleteMessages(username)
+            }
         })
     }
 }
