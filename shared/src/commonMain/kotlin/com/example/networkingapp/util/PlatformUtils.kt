@@ -7,4 +7,6 @@ enum class OS{
 
 //expect val OS
 
+expect fun randomUUID(): String
+
 expect fun nativePrint(message: String, key: String)

@@ -1,13 +1,12 @@
 package com.example.networkingapp.viewmodel
 
 import com.example.networkingapp.model.MessageDto
-import com.example.networkingapp.model.ReceivedMessageDto
-import com.example.networkingapp.model.SendMessageDto
 import com.example.networkingapp.service.MessageService
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import kotlinx.coroutines.launch
+
 
 class MainActivityViewModel() : ViewModel() {
 
@@ -36,7 +35,6 @@ class MainActivityViewModel() : ViewModel() {
 
     fun fetchMessages(user: String){
 
-
         viewModelScope.launch{
             mIsRequesting.value = true
             kotlin.runCatching {
@@ -49,6 +47,30 @@ class MainActivityViewModel() : ViewModel() {
 
             }.onSuccess {
                 println("fetchMessages succeeded:") // Success log
+                for(message in mMessageList.value){
+                    println(message)
+                }
+            }
+            mIsRequesting.value = false
+        }
+    }
+
+    fun deleteMessages(user: String){
+        viewModelScope.launch{
+            mIsRequesting.value = true
+            kotlin.runCatching {
+
+                MessageService.clearMessagesForUser(user)
+
+                val response: Array<MessageDto> = MessageService.getMessagesForUser(user)
+                mMessageList.value = response.toMutableList()
+
+
+            }.onFailure {
+                println("deleteMessages failed with error: ${it.message}\"")
+
+            }.onSuccess {
+                println("deleteMessages succeeded:") // Success log
                 for(message in mMessageList.value){
                     println(message)
                 }
