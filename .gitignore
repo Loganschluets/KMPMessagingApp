@@ -8,3 +8,21 @@ captures
 .cxx
 local.properties
 xcuserdata
+.kotlin
+iosApp/Podfile.lock
+
+# Kotlin/Native build outputs and caches
+**/build/
+**/.gradle/
+**/.idea/
+**/*.iml
+**/out/
+
+# Ignore generated folders for multiplatform projects
+**/kotlin/
+**/generated/
+**/bin/
+
+# Ignore Mac-specific files
+.DS_Store
+

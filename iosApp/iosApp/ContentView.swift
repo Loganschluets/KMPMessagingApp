@@ -1,11 +1,11 @@
 import SwiftUI
-import shared
+import MultiPlatformLibrary
 
 struct ContentView: View {
-	let greet = Greeting().greet()
+	
 
 	var body: some View {
-		Text(greet)
+		Text("hello")
 	}
 }
 
